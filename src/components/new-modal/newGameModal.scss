@@ -1,0 +1,99 @@
+.new-game-modal-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(100, 100, 100, 0.9);
+  transform: scale(0);
+}
+
+.new-game-modal-container.active{
+  transform: scale(1);
+}
+
+.new-game-modal-inner-container{
+  margin: 0 20px;
+  position: relative;
+}
+
+.new-game-modal-window {
+  border-radius: 10px;
+  height: auto;
+  width: auto;
+  background-color: #3c4041;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 2px white solid;
+}
+
+.new-game-title-btn{
+  margin-bottom: 10px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.new-game-player1-container{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.new-game-player1-text{
+  font-size: 25px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.new-game-player1-input{
+  font-weight: bold;
+  font-size: 40px;
+  width: 100%;
+}
+
+.new-game-player2-container{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.new-game-player2-text{
+  font-size: 25px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.new-game-player2-input{
+  font-weight: bold;
+  font-size: 40px;
+  width: 100%;
+}
+
+.new-game-modal-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.new-game-modal-btn{
+  font-size: 30px;
+  width: 240px;
+  height: 60px;
+  background-color: transparent;
+  border: 1px white solid;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}
+
+.new-game-modal-close-btn{
+  top: 12px;
+  right: 10px;
+  font-size: 20px;
+  position: absolute;
+  color: white;
+  background-color: transparent;
+  border: none;
+}

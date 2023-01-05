@@ -1,0 +1,46 @@
+.end-game-modal-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(100, 100, 100, 0.9);
+}
+
+.end-game-modal-window {
+  border-radius: 10px;
+  height: auto;
+  width: auto;
+  background-color: #3c4041;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px white solid;
+}
+
+.end-game-title-btn {
+  margin: 10px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.end-game-modal-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.end-game-modal-btn {
+  font-size: 30px;
+  width: 240px;
+  height: 60px;
+  background-color: transparent;
+  border: 1px white solid;
+  margin: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=endGameModal.css.map */

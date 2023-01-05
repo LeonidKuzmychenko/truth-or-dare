@@ -1,0 +1,80 @@
+.main {
+  height: calc(100% - 70px);;
+  background: #3c4041;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+}
+
+.content {
+  display: grid;
+  //border: 3px black solid;
+  height: 100%;
+  width: 100%;
+
+  grid-template-areas:
+          "title    title    title"
+          "level    level    level"
+          "player   player   player"
+          "question question question"
+          "next     next     next";
+
+  grid-template-rows:  60px 40px 60px 1fr 100px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.title-text {
+  font-size: 35px;
+  grid-area: title;
+  text-align: center;
+  margin-top: auto;
+  font-weight: bold;
+  color: white;
+}
+
+.level-text {
+  font-size: 20px;
+  grid-area: level;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: bold;
+  color: white;
+}
+
+.player-name-text {
+  font-size: 30px;
+  grid-area: player;
+  text-align: center;
+  margin-top: auto;
+  font-weight: bold;
+  color: white;
+}
+
+.question-text {
+  font-size: 30px;
+  grid-area: question;
+  text-align: center;
+  margin: auto 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.next-question-container{
+  grid-area: next;
+  display: flex;
+  justify-content: center;
+}
+
+.next-question-btn{
+  font-size: 25px;
+  height: 75px;
+  width: 150px;
+  margin-bottom: auto;
+  font-weight: bold;
+  border: 1px white solid;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+}
+
