@@ -1,5 +1,6 @@
 import React from 'react';
 import './header.scss';
+import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 interface HeaderProps {
     viewNewGameModel: Function;
@@ -12,8 +13,9 @@ export default function Header(props: HeaderProps) {
             <button className="menu-btn">МЕНЮ</button>
             <button className="new-game-btn" onClick={() => {
                 console.log("click")
-                props.viewNewGameModel([true, true])
-            }}>НОВАЯ ИГРА</button>
+                props.viewNewGameModel(new NewGameModelViewMode(true, true))
+            }}>НОВАЯ ИГРА
+            </button>
         </header>
     )
 }

@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from "react";
 import {NewGameInstance} from "../../dtos/newGameInstance";
 import './newGameModal.scss';
+import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 interface StartGameModelProps {
-    visible: boolean
-    closable: boolean
+    newGameModelViewMode: NewGameModelViewMode
     viewNewGameModel: Function;
     startNewGame: Function;
 }
@@ -31,10 +31,10 @@ export default function NewGameModel(props: StartGameModelProps) {
         player2Name = event.target.value
     };
 
-    return <div className={props.visible ? "new-game-modal-container active" : "new-game-modal-container"}>
+    return <div className={props.newGameModelViewMode.visible ? "new-game-modal-container active" : "new-game-modal-container"}>
         <div className="new-game-modal-inner-container">
-            {props.closable ?
-                <button className="new-game-modal-close-btn" onClick={props.viewNewGameModel([false, false])}>X</button>
+            {props.newGameModelViewMode.closable ?
+                <button className="new-game-modal-close-btn" onClick={()=>props.viewNewGameModel(false, false)}>X</button>
                 : <></>
             }
             <div className="new-game-modal-window">

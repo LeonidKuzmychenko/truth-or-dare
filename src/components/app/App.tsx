@@ -9,10 +9,11 @@ import {AxiosResponse} from "axios";
 import SessionResponse from "../../dtos/sessionResponse";
 import {nextQuestionRequest, sessionRequest, startRequest} from "../../services/requests";
 import QuestionResponse from "../../dtos/questionResponse";
+import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 export default function App() {
 
-    let [[newGameModalVisible, newGameModalClosable], setNewGameModelViewMode] = useState([false, false])
+    let [newGameModelViewMode, setNewGameModelViewMode] = useState<NewGameModelViewMode>(new NewGameModelViewMode(false, false))
     let [endGameModelViewMode, setEndGameModelViewMode] = useState(false)
     let [gameQuestion, setGameQuestion] = useState<QuestionResponse>()
 
@@ -46,7 +47,7 @@ export default function App() {
                 await nextQuestion()
             } else {
                 localStorage.setItem("session", newSession);
-                setNewGameModelViewMode([true, false])
+                setNewGameModelViewMode(new NewGameModelViewMode(true, false))
             }
         }
 
@@ -56,8 +57,7 @@ export default function App() {
     return (
         <>
             <NewGameModel key="newGameModel"
-                          visible={newGameModalVisible}
-                          closable={newGameModalClosable}
+                          newGameModelViewMode={newGameModelViewMode}
                           viewNewGameModel={setNewGameModelViewMode}
                           startNewGame={startNewGame}
             />
