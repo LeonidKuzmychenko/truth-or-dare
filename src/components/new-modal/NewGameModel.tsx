@@ -11,6 +11,7 @@ interface StartGameModelProps {
 
 export default function NewGameModel(props: StartGameModelProps) {
     console.log("Обновляется модальное окно Новой игры")
+    console.table(props)
 
     let player1Name: string = "";
     let player2Name: string = "";

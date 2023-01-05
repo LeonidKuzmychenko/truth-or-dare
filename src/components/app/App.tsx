@@ -9,7 +9,6 @@ import {AxiosResponse} from "axios";
 import SessionResponse from "../../dtos/sessionResponse";
 import {nextQuestionRequest, sessionRequest, startRequest} from "../../services/requests";
 import QuestionResponse from "../../dtos/questionResponse";
-import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 export default function App() {
 
@@ -50,27 +49,32 @@ export default function App() {
                 setNewGameModelViewMode([true, false])
             }
         }
+
         initPage()
     }, [])
 
     return (
         <>
-            <NewGameModel visible={newGameModalVisible}
+            <NewGameModel key="newGameModel"
+                          visible={newGameModalVisible}
                           closable={newGameModalClosable}
                           viewNewGameModel={setNewGameModelViewMode}
                           startNewGame={startNewGame}
             />
-            <EndGameModal visible={endGameModelViewMode}
+            <EndGameModal key="endGameModal"
+                          visible={endGameModelViewMode}
                           viewNewGameModel={setNewGameModelViewMode}
                           viewEndGameModel={setEndGameModelViewMode}
             />
             <section className="wrapper">
-                <Header viewNewGameModel={setNewGameModelViewMode}/>
-                <Main nextQuestion={nextQuestion}
+                <Header key="header"
+                        viewNewGameModel={setNewGameModelViewMode}
+                />
+                <Main key="main"
+                      nextQuestion={nextQuestion}
                       question={gameQuestion}
                 />
             </section>
         </>
-
     );
 }

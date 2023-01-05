@@ -9,6 +9,16 @@ export async function sessionRequest(session: any): Promise<AxiosResponse<Sessio
     return await axios.get(host + "/game/session", {params});
 }
 
+// export async function sessionRequest(session: any): Promise<AxiosResponse<SessionResponse>> {
+//     // const params = new URLSearchParams([['session', "session"]]);
+//     // return await axios.get(host + "/game/session", {params});
+//
+//     return new Promise(((resolve, reject) => {
+//         resolve({data:{session:""}})
+//     }))
+//
+// }
+
 export async function startRequest(male: string, female: string): Promise<AxiosResponse<QuestionResponse>> {
     let session: any = localStorage.getItem("session")
     const params = new URLSearchParams([

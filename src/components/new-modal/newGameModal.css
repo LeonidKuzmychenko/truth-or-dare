@@ -96,6 +96,11 @@
   color: white;
   background-color: transparent;
   border: none;
+  transform: scale(0);
+}
+
+.new-game-modal-close-btn.active {
+  transform: scale(1);
 }
 
 /*# sourceMappingURL=newGameModal.css.map */
