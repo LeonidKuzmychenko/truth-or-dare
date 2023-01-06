@@ -1,80 +1,81 @@
-import React, {useEffect, useState} from 'react';
-import Header from "../header/Header";
-import Main from "../main/Main";
-import EndGameModal from "../end-modal/EndGameModal";
-import NewGameModel from "../new-modal/NewGameModel";
-import {NewGameInstance} from "../../dtos/newGameInstance";
+import React, {memo, useEffect, useState} from 'react';
+import MemoHeader from "../header/Header";
+import MemoMain from "../main/Main";
+import MemoEndGameModal from "../end-modal/EndGameModal";
+import MemoNewGameModel from "../new-modal/NewGameModel";
 import './app.scss';
 import {AxiosResponse} from "axios";
 import SessionResponse from "../../dtos/sessionResponse";
-import {nextQuestionRequest, sessionRequest, startRequest} from "../../services/requests";
-import QuestionResponse from "../../dtos/questionResponse";
+import {sessionRequest, startRequest} from "../../services/requests";
 import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
+import {NewGameInstance} from "../../dtos/newGameInstance";
+import CheckSessionResponse from "../../dtos/checkSessionResponse";
 
-export default function App() {
+const App = () => {
 
     let [newGameModelViewMode, setNewGameModelViewMode] = useState<NewGameModelViewMode>(new NewGameModelViewMode(false, false))
     let [endGameModelViewMode, setEndGameModelViewMode] = useState(false)
-    let [gameQuestion, setGameQuestion] = useState<QuestionResponse>()
-
-    async function startNewGame(newGame: NewGameInstance) {
-        console.log("startNewGame")
-        let questionResponse: AxiosResponse<QuestionResponse> = await startRequest(newGame.male, newGame.female);
-        let questionData = questionResponse.data;
-        setGameQuestion(questionData)
-    }
-
-    async function nextQuestion(): Promise<void> {
-        console.log("nextQuestion")
-        let questionResponse: AxiosResponse<QuestionResponse> = await nextQuestionRequest();
-        if (questionResponse.status === 204) {
-            console.log("204")
-            setEndGameModelViewMode(true)
-        } else {
-            let questionData = questionResponse.data;
-            setGameQuestion(questionData)
-        }
-    }
+    let [mainKey, setMainKey] = useState<string | null>(localStorage.getItem("session"))
 
     useEffect(() => {
         async function initPage(): Promise<void> {
             console.log("initPage")
-            let oldSession: any = localStorage.getItem("session");
-            let sessionResponse: AxiosResponse<SessionResponse> = await sessionRequest(oldSession)
-            let sessionData = sessionResponse.data;
-            let newSession: string = sessionData.session;
-            if (oldSession === newSession) {
-                await nextQuestion()
-            } else {
-                localStorage.setItem("session", newSession);
+            let savedSession: string | null = localStorage.getItem("session");
+            console.log("saved session = " + savedSession)
+            if (savedSession === null) {
+                console.log("session ! as string")
                 setNewGameModelViewMode(new NewGameModelViewMode(true, false))
+                return;
+            }
+            if (savedSession as string) {
+                let sessionResponse: AxiosResponse<CheckSessionResponse> = await sessionRequest(savedSession)
+                let sessionData = sessionResponse.data;
+                console.table(sessionData)
+                let sessionIsExist: boolean = sessionData.exist;
+                console.log("session is exist = " + sessionIsExist)
+                if (!sessionIsExist) {
+                    setNewGameModelViewMode(new NewGameModelViewMode(true, false))
+                    return;
+                }
             }
         }
 
         initPage()
     }, [])
 
+    async function startNewGame(newGame: NewGameInstance) {
+        console.log("startNewGame")
+        let sessionResponse: AxiosResponse<SessionResponse> = await startRequest(newGame.male, newGame.female);
+        let sessionData: SessionResponse = sessionResponse.data;
+        let session: string = sessionData.session;
+        localStorage.setItem("session", session)
+        setMainKey(session)
+    }
+
     return (
         <>
-            <NewGameModel key="newGameModel"
-                          newGameModelViewMode={newGameModelViewMode}
-                          viewNewGameModel={setNewGameModelViewMode}
-                          startNewGame={startNewGame}
+            <MemoNewGameModel key="newGameModel"
+                              newGameModelViewMode={newGameModelViewMode}
+                              viewNewGameModel={setNewGameModelViewMode}
+                              startNewGame={startNewGame}
             />
-            <EndGameModal key="endGameModal"
-                          visible={endGameModelViewMode}
-                          viewNewGameModel={setNewGameModelViewMode}
-                          viewEndGameModel={setEndGameModelViewMode}
+            <MemoEndGameModal key="endGameModal"
+                              visible={endGameModelViewMode}
+                              viewNewGameModel={setNewGameModelViewMode}
+                              viewEndGameModel={setEndGameModelViewMode}
             />
             <section className="wrapper">
-                <Header key="header"
-                        viewNewGameModel={setNewGameModelViewMode}
+                <MemoHeader key="header"
+                            viewNewGameModel={setNewGameModelViewMode}
                 />
-                <Main key="main"
-                      nextQuestion={nextQuestion}
-                      question={gameQuestion}
+                <MemoMain key={mainKey}
+                          setEndGameModelViewMode={setEndGameModelViewMode}
                 />
             </section>
         </>
     );
 }
+
+const MemoApp = memo(App)
+
+export default MemoApp

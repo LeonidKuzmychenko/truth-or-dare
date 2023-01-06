@@ -9,11 +9,11 @@
   transform: scale(0);
 }
 
-.new-game-modal-container.active{
+.new-game-modal-container.active {
   transform: scale(1);
 }
 
-.new-game-modal-inner-container{
+.new-game-modal-inner-container {
   margin: 0 20px;
   position: relative;
 }
@@ -29,55 +29,55 @@
   border: 2px white solid;
 }
 
-.new-game-title-btn{
+.new-game-title-btn {
   margin-bottom: 10px;
   font-size: 30px;
   text-align: center;
   color: white;
 }
 
-.new-game-player1-container{
+.new-game-player1-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.new-game-player1-text{
+.new-game-player1-text {
   font-size: 25px;
   color: white;
   margin-bottom: 5px;
 }
 
-.new-game-player1-input{
+.new-game-player1-input {
   font-weight: bold;
   font-size: 40px;
   width: 100%;
 }
 
-.new-game-player2-container{
+.new-game-player2-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
 }
 
-.new-game-player2-text{
+.new-game-player2-text {
   font-size: 25px;
   color: white;
   margin-bottom: 5px;
 }
 
-.new-game-player2-input{
+.new-game-player2-input {
   font-weight: bold;
   font-size: 40px;
   width: 100%;
 }
 
-.new-game-modal-btn-container{
+.new-game-modal-btn-container {
   display: flex;
   justify-content: center;
 }
 
-.new-game-modal-btn{
+.new-game-modal-btn {
   font-size: 30px;
   width: 240px;
   height: 60px;
@@ -88,7 +88,7 @@
   border-radius: 10px;
 }
 
-.new-game-modal-close-btn{
+.new-game-modal-close-btn {
   top: 12px;
   right: 10px;
   font-size: 20px;
@@ -99,6 +99,6 @@
   transform: scale(0);
 }
 
-.new-game-modal-close-btn.active{
+.new-game-modal-close-btn.active {
   transform: scale(1);
 }

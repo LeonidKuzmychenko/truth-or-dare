@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, memo} from "react";
 import {NewGameInstance} from "../../dtos/newGameInstance";
 import './newGameModal.scss';
 import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
@@ -9,9 +9,8 @@ interface StartGameModelProps {
     startNewGame: Function;
 }
 
-export default function NewGameModel(props: StartGameModelProps) {
+const NewGameModel = (props: StartGameModelProps) => {
     console.log("Обновляется модальное окно Новой игры")
-    console.table(props)
 
     let player1Name: string = "";
     let player2Name: string = "";
@@ -31,12 +30,11 @@ export default function NewGameModel(props: StartGameModelProps) {
         player2Name = event.target.value
     };
 
-    return <div className={props.newGameModelViewMode.visible ? "new-game-modal-container active" : "new-game-modal-container"}>
+    return <div className={"new-game-modal-container" + (props.newGameModelViewMode.visible ? " active" : "")}>
         <div className="new-game-modal-inner-container">
-            {props.newGameModelViewMode.closable ?
-                <button className="new-game-modal-close-btn" onClick={()=>props.viewNewGameModel(false, false)}>X</button>
-                : <></>
-            }
+            <button className={"new-game-modal-close-btn" + (props.newGameModelViewMode.closable ? " active" : "")}
+                    onClick={() => props.viewNewGameModel(false, false)}>X
+            </button>
             <div className="new-game-modal-window">
                 <span className="new-game-title-btn">НОВАЯ ИГРА</span>
                 <label className="new-game-player1-container">
@@ -57,3 +55,7 @@ export default function NewGameModel(props: StartGameModelProps) {
     </div>
 
 }
+
+const MemoNewGameModel = memo(NewGameModel)
+
+export default MemoNewGameModel

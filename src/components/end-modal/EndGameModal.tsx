@@ -1,18 +1,19 @@
-import React from "react";
+import React, {memo} from "react";
 import './endGameModal.scss';
+import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 interface EndGameModelProps {
     visible: boolean
-    viewNewGameModel: Function;
-    viewEndGameModel: Function;
+    viewNewGameModel: (it: NewGameModelViewMode) => void;
+    viewEndGameModel: (it: boolean) => void;
 }
 
-export default function EndGameModal(props: EndGameModelProps) {
+const EndGameModal = (props: EndGameModelProps) => {
     console.log("Обновляется модальное окно Окончания игры")
 
-    function onClick() {
+    const onClick = () => {
+        props.viewNewGameModel(new NewGameModelViewMode(true, false))
         props.viewEndGameModel(false)
-        props.viewNewGameModel([true, false])
     }
 
     if (props.visible) {
@@ -21,7 +22,7 @@ export default function EndGameModal(props: EndGameModelProps) {
                 <div className="end-game-modal-window">
                     <span className="end-game-title-btn">ИГРА ЗАКОНЧИЛАСЬ</span>
                     <div className="end-game-modal-btn-container">
-                        <button className="end-game-modal-btn" onClick={() => onClick()}>
+                        <button className="end-game-modal-btn" onClick={onClick}>
                             НОВАЯ ИГРА
                         </button>
                     </div>
@@ -32,3 +33,7 @@ export default function EndGameModal(props: EndGameModelProps) {
         return <></>
     }
 }
+
+const MemoEndGameModal = memo(EndGameModal)
+
+export default MemoEndGameModal

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import './header.scss';
 import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
@@ -6,7 +6,7 @@ interface HeaderProps {
     viewNewGameModel: Function;
 }
 
-export default function Header(props: HeaderProps) {
+const Header = (props: HeaderProps) => {
     console.log("Обновляется Хедер")
     return (
         <header className="header">
@@ -19,3 +19,7 @@ export default function Header(props: HeaderProps) {
         </header>
     )
 }
+
+const MemoHeader = memo(Header)
+
+export default MemoHeader
