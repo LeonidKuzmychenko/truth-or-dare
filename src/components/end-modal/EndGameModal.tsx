@@ -1,10 +1,9 @@
 import React, {memo} from "react";
 import './endGameModal.scss';
-import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 interface EndGameModelProps {
     visible: boolean
-    viewNewGameModel: (it: NewGameModelViewMode) => void;
+    viewNewGameModel: (visible: boolean, closable: boolean) => void;
     viewEndGameModel: (it: boolean) => void;
 }
 
@@ -12,7 +11,7 @@ const EndGameModal = (props: EndGameModelProps) => {
     console.log("Обновляется модальное окно Окончания игры")
 
     const onClick = () => {
-        props.viewNewGameModel(new NewGameModelViewMode(true, false))
+        props.viewNewGameModel(true, false)
         props.viewEndGameModel(false)
     }
 

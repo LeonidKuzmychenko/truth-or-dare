@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import MemoHeader from "../header/Header";
 import MemoMain from "../main/Main";
 import MemoEndGameModal from "../end-modal/EndGameModal";
@@ -15,7 +15,7 @@ const App = () => {
 
     let [newGameModelViewMode, setNewGameModelViewMode] = useState<NewGameModelViewMode>(new NewGameModelViewMode(false, false))
     let [endGameModelViewMode, setEndGameModelViewMode] = useState(false)
-    let [mainKey, setMainKey] = useState<string | null>(localStorage.getItem("session"))
+    let [mainKey, setMainKey] = useState<string | null>(localStorage.getItem("session") ? localStorage.getItem("session") : "")
 
     useEffect(() => {
         async function initPage(): Promise<void> {
@@ -43,33 +43,42 @@ const App = () => {
         initPage()
     }, [])
 
-    async function startNewGame(newGame: NewGameInstance) {
+
+    const viewNewGameModal = useCallback((visible: boolean, closable: boolean) => {
+        setNewGameModelViewMode(new NewGameModelViewMode(visible, closable))
+    }, [])
+
+    const viewEndGameModal = useCallback((visible: boolean) => {
+        setEndGameModelViewMode(visible)
+    }, [])
+
+    const startNewGame = useCallback(async (newGame: NewGameInstance) => {
         console.log("startNewGame")
         let sessionResponse: AxiosResponse<SessionResponse> = await startRequest(newGame.male, newGame.female);
         let sessionData: SessionResponse = sessionResponse.data;
         let session: string = sessionData.session;
         localStorage.setItem("session", session)
         setMainKey(session)
-    }
+    }, [])
 
     return (
         <>
             <MemoNewGameModel key="newGameModel"
                               newGameModelViewMode={newGameModelViewMode}
-                              viewNewGameModel={setNewGameModelViewMode}
+                              viewNewGameModel={viewNewGameModal}
                               startNewGame={startNewGame}
             />
             <MemoEndGameModal key="endGameModal"
                               visible={endGameModelViewMode}
-                              viewNewGameModel={setNewGameModelViewMode}
-                              viewEndGameModel={setEndGameModelViewMode}
+                              viewNewGameModel={viewNewGameModal}
+                              viewEndGameModel={viewEndGameModal}
             />
             <section className="wrapper">
                 <MemoHeader key="header"
-                            viewNewGameModel={setNewGameModelViewMode}
+                            viewNewGameModel={viewNewGameModal}
                 />
                 <MemoMain key={mainKey}
-                          setEndGameModelViewMode={setEndGameModelViewMode}
+                          setEndGameModelViewMode={viewEndGameModal}
                 />
             </section>
         </>

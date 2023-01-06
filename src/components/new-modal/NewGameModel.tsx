@@ -5,30 +5,20 @@ import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
 
 interface StartGameModelProps {
     newGameModelViewMode: NewGameModelViewMode
-    viewNewGameModel: Function;
-    startNewGame: Function;
+    viewNewGameModel: (visible: boolean, closable: boolean) => void;
+    startNewGame: (visible: NewGameInstance) => void;
 }
 
 const NewGameModel = (props: StartGameModelProps) => {
     console.log("Обновляется модальное окно Новой игры")
 
-    let player1Name: string = "";
-    let player2Name: string = "";
-
     function startNewGame() {
-        console.log("startNewGame click")
-        let newGame: NewGameInstance = new NewGameInstance(player1Name, player2Name);
-        props.viewNewGameModel([false, false]);
+        let male = (document.getElementById("new-game-player1-input-id") as HTMLInputElement).value
+        let female = (document.getElementById("new-game-player2-input-id") as HTMLInputElement).value
+        let newGame: NewGameInstance = new NewGameInstance(male, female);
+        props.viewNewGameModel(false, false);
         props.startNewGame(newGame);
     }
-
-    let onChangePlayer1Name = (event: ChangeEvent<HTMLInputElement>) => {
-        player1Name = event.target.value
-    };
-
-    let onChangePlayer2Name = (event: ChangeEvent<HTMLInputElement>) => {
-        player2Name = event.target.value
-    };
 
     return <div className={"new-game-modal-container" + (props.newGameModelViewMode.visible ? " active" : "")}>
         <div className="new-game-modal-inner-container">
@@ -39,13 +29,13 @@ const NewGameModel = (props: StartGameModelProps) => {
                 <span className="new-game-title-btn">НОВАЯ ИГРА</span>
                 <label className="new-game-player1-container">
                     <span className="new-game-player1-text">Имя игрока 🧑:</span>
-                    <input className="new-game-player2-input" type="text" name="player1" maxLength={12} size={12}
-                           onChange={onChangePlayer1Name}/>
+                    <input id="new-game-player1-input-id" className="new-game-player1-input" type="text" name="player1"
+                           maxLength={12} size={12}/>
                 </label>
                 <label className="new-game-player2-container">
                     <span className="new-game-player2-text">Имя игрока 👧‍:</span>
-                    <input className="new-game-player2-input" type="text" name="player2" maxLength={12} size={12}
-                           onChange={onChangePlayer2Name}/>
+                    <input id="new-game-player2-input-id" className="new-game-player2-input" type="text" name="player2"
+                           maxLength={12} size={12}/>
                 </label>
                 <div className="new-game-modal-btn-container">
                     <button className="new-game-modal-btn" onClick={() => startNewGame()}>НАЧАТЬ</button>
@@ -53,8 +43,8 @@ const NewGameModel = (props: StartGameModelProps) => {
             </div>
         </div>
     </div>
-
 }
+
 
 const MemoNewGameModel = memo(NewGameModel)
 

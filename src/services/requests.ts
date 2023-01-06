@@ -12,8 +12,8 @@ export async function sessionRequest(session: any): Promise<AxiosResponse<CheckS
 
 export async function startRequest(male: string, female: string): Promise<AxiosResponse<SessionResponse>> {
     const params = new URLSearchParams([
-        ['male', male],
-        ['female', female],
+        ['male', male + "🧑"],
+        ['female', female + "👧"],
     ]);
     return await axios.get(host + "/game/start", {params});
 }

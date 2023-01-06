@@ -31,10 +31,12 @@ const Main = (props: MainProps) => {
     return (
         <main className="main">
             <div className="content">
-                <span id="title-text-id" className="title-text">{question?.type}</span>
-                <span id="level-text-id" className="level-text">{question?.level}</span>
-                <span id="player-name-text-id" className="player-name-text">{question?.player}</span>
-                <span id="question-text-id" className="question-text">{question?.text}</span>
+                {question === null ? <></> : <>
+                    <span id="title-text-id" className="title-text">{question?.type}</span>
+                    <span id="level-text-id" className="level-text">Уровень {question?.level}</span>
+                    <span id="player-name-text-id" className="player-name-text">{question?.player}</span>
+                    <span id="question-text-id" className="question-text">{question?.text}</span>
+                </>}
                 <div className="next-question-container">
                     <button className="next-question-btn" onClick={() => nextQuestion()}>ДАЛЕЕ</button>
                 </div>
