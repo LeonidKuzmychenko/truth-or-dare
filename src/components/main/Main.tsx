@@ -1,5 +1,5 @@
 import React, {memo, useEffect, useState} from 'react';
-import QuestionResponse from "../../dtos/questionResponse";
+import QuestionResponse from "../../dtos/question-response";
 import './main.css';
 import {AxiosResponse} from "axios";
 import {nextQuestionRequest} from "../../services/requests";

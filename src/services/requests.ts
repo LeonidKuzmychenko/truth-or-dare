@@ -1,7 +1,7 @@
-import QuestionResponse from "../dtos/questionResponse";
+import QuestionResponse from "../dtos/question-response";
 import axios, {AxiosResponse} from "axios";
-import CheckSessionResponse from "../dtos/checkSessionResponse";
-import SessionResponse from "../dtos/sessionResponse";
+import CheckSessionResponse from "../dtos/check-session-response";
+import SessionResponse from "../dtos/session-response";
 
 const host = "http://localhost:8080";
 

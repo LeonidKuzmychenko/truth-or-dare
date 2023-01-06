@@ -1,7 +1,7 @@
-import React, {ChangeEvent, memo} from "react";
-import {NewGameInstance} from "../../dtos/newGameInstance";
-import './newGameModal.scss';
-import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
+import React, {memo} from "react";
+import {NewGameInstance} from "../../dtos/new-game-instance";
+import './new-game-modal.scss';
+import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
 
 interface StartGameModelProps {
     newGameModelViewMode: NewGameModelViewMode

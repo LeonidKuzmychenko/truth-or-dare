@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import './header.scss';
-import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
+import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
 
 interface HeaderProps {
     viewNewGameModel: Function;

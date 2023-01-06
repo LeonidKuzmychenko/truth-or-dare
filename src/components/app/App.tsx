@@ -5,11 +5,11 @@ import MemoEndGameModal from "../end-modal/EndGameModal";
 import MemoNewGameModel from "../new-modal/NewGameModel";
 import './app.scss';
 import {AxiosResponse} from "axios";
-import SessionResponse from "../../dtos/sessionResponse";
+import SessionResponse from "../../dtos/session-response";
 import {sessionRequest, startRequest} from "../../services/requests";
-import {NewGameModelViewMode} from "../../dtos/newGameModeelViewMode";
-import {NewGameInstance} from "../../dtos/newGameInstance";
-import CheckSessionResponse from "../../dtos/checkSessionResponse";
+import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
+import {NewGameInstance} from "../../dtos/new-game-instance";
+import CheckSessionResponse from "../../dtos/check-session-response";
 
 const App = () => {
 

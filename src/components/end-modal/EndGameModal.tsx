@@ -1,5 +1,5 @@
 import React, {memo} from "react";
-import './endGameModal.scss';
+import './end-game-modal.scss';
 
 interface EndGameModelProps {
     visible: boolean
