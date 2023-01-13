@@ -1,9 +1,8 @@
 import React, {memo} from 'react';
 import './header.scss';
-import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
 
 interface HeaderProps {
-    viewNewGameModel: Function;
+    viewNewGameModel: (visible: boolean, closable: boolean) => void;
 }
 
 const Header = (props: HeaderProps) => {
@@ -13,7 +12,7 @@ const Header = (props: HeaderProps) => {
             <button className="menu-btn">МЕНЮ</button>
             <button className="new-game-btn" onClick={() => {
                 console.log("click")
-                props.viewNewGameModel(new NewGameModelViewMode(true, true))
+                props.viewNewGameModel(true, true)
             }}>НОВАЯ ИГРА
             </button>
         </header>

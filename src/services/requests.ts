@@ -3,7 +3,7 @@ import axios, {AxiosResponse} from "axios";
 import CheckSessionResponse from "../dtos/check-session-response";
 import SessionResponse from "../dtos/session-response";
 
-const host = "http://localhost:8080";
+const host = "http://truthordare-env.eba-iu3htat2.eu-central-1.elasticbeanstalk.com";
 
 export async function sessionRequest(session: any): Promise<AxiosResponse<CheckSessionResponse>> {
     const params = new URLSearchParams([['session', session]]);

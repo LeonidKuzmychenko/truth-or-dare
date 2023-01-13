@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo, useRef} from "react";
 import {NewGameInstance} from "../../dtos/new-game-instance";
 import './new-game-modal.scss';
 import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
@@ -12,10 +12,11 @@ interface StartGameModelProps {
 const NewGameModel = (props: StartGameModelProps) => {
     console.log("Обновляется модальное окно Новой игры")
 
+    const maleName = useRef<HTMLInputElement>(null);
+    const femaleName = useRef<HTMLInputElement>(null);
+
     function startNewGame() {
-        let male = (document.getElementById("new-game-player1-input-id") as HTMLInputElement).value
-        let female = (document.getElementById("new-game-player2-input-id") as HTMLInputElement).value
-        let newGame: NewGameInstance = new NewGameInstance(male, female);
+        let newGame: NewGameInstance = new NewGameInstance(maleName!.current!.value, femaleName!.current!.value);
         props.viewNewGameModel(false, false);
         props.startNewGame(newGame);
     }
@@ -29,13 +30,13 @@ const NewGameModel = (props: StartGameModelProps) => {
                 <span className="new-game-title-btn">НОВАЯ ИГРА</span>
                 <label className="new-game-player1-container">
                     <span className="new-game-player1-text">Имя игрока 🧑:</span>
-                    <input id="new-game-player1-input-id" className="new-game-player1-input" type="text" name="player1"
-                           maxLength={12} size={12}/>
+                    <input ref={maleName} className="new-game-player1-input"
+                           type="text" name="player1" maxLength={20} size={12}/>
                 </label>
                 <label className="new-game-player2-container">
                     <span className="new-game-player2-text">Имя игрока 👧‍:</span>
-                    <input id="new-game-player2-input-id" className="new-game-player2-input" type="text" name="player2"
-                           maxLength={12} size={12}/>
+                    <input ref={femaleName} id="new-game-player2-input-id" className="new-game-player2-input"
+                           type="text" name="player2" maxLength={20} size={12}/>
                 </label>
                 <div className="new-game-modal-btn-container">
                     <button className="new-game-modal-btn" onClick={() => startNewGame()}>НАЧАТЬ</button>

@@ -5,7 +5,7 @@ import {AxiosResponse} from "axios";
 import {nextQuestionRequest} from "../../services/requests";
 
 interface MainProps {
-    setEndGameModelViewMode: Function
+    setEndGameModelViewMode: (it: boolean) => void;
 }
 
 const Main = (props: MainProps) => {
