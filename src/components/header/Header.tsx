@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import './header.scss';
+import './header.css';
 
 interface HeaderProps {
     viewNewGameModel: (visible: boolean, closable: boolean) => void;

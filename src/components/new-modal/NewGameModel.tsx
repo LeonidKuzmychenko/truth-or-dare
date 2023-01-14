@@ -1,6 +1,6 @@
 import React, {memo, useRef} from "react";
 import {NewGameInstance} from "../../dtos/new-game-instance";
-import './new-game-modal.scss';
+import './new-game-modal.css';
 import {NewGameModelViewMode} from "../../dtos/new-game-modal-view-mode";
 
 interface StartGameModelProps {

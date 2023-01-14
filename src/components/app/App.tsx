@@ -1,7 +1,7 @@
 import React, {lazy, memo, useCallback, useEffect, useState} from 'react';
 import MemoHeader from "../header/Header";
 import MemoMain from "../main/Main";
-import './app.scss';
+import './app.css';
 import {AxiosResponse} from "axios";
 import SessionResponse from "../../dtos/session-response";
 import {sessionRequest, startRequest} from "../../services/requests";
