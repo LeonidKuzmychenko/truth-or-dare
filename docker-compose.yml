@@ -4,4 +4,4 @@ services:
     build: .
     container_name: truth-or-dare-front
     ports:
-      - '8080:5000'
+      - '8000:5000'
