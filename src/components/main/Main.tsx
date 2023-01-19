@@ -24,8 +24,13 @@ const Main = (props: MainProps) => {
         }
     }
 
+
+
     useEffect(() => {
-        nextQuestion();
+        async function nextQuestionInside() {
+            await nextQuestion();
+        }
+        nextQuestionInside()
     }, [])
 
     return (

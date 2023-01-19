@@ -1,0 +1,7 @@
+version: '1'
+services:
+  truth-or-dare:
+    build: .
+    container_name: truth-or-dare-front
+    ports:
+      - '5000:5000'
